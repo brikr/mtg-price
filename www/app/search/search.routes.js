@@ -7,7 +7,7 @@
 
   function config($stateProvider) {
     $stateProvider
-      .state('app.search', {
+      .state('search', {
         url: '/search',
         controller: 'SearchController',
         templateUrl: 'app/search/search.tpl.html'

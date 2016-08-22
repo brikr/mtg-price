@@ -4,6 +4,6 @@
     .config(config);
 
   function config($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.otherwise('/app/search');
+    $urlRouterProvider.otherwise('/search');
   }
 })();
