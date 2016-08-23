@@ -6,12 +6,14 @@
   MtgPriceService.$inject = ['$http'];
 
   function MtgPriceService($http) {
+    var url = 'https://api.deckbrew.com/mtg'
+
     return {
       getAutoComplete: getAutoComplete
     }
 
     function getAutoComplete(str) {
-      return ['Tarmogoyf'];
+      return $http.get(url + '/cards/typeahead?q=' + str);
     }
   }
 })();

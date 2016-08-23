@@ -7,10 +7,14 @@
 
   function config($stateProvider) {
     $stateProvider
-      .state('search', {
+      .state('app.search', {
         url: '/search',
-        controller: 'SearchController',
-        templateUrl: 'app/search/search.tpl.html'
+        views: {
+          search: {
+            controller: 'SearchController',
+            templateUrl: 'app/search/search.tpl.html'
+          }
+        }
       });
   }
 })();

@@ -3,6 +3,8 @@
     .module('mtg-price', [
       'ionic',
 
+      'jett.ionic.filter.bar',
+
       'mtg-price.search'
     ])
     .run(run);

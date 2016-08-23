@@ -1,6 +1,12 @@
 <ion-view>
-  <ion-header-bar class="bar-stable">asdf</ion-header-bar><ion-content>
-  <ion-searchbar></ion-searchbar>
-    suh dude
+  <ion-nav-title>Search</ion-nav-title>
+
+  <ion-nav-buttons side="secondary">
+    <button class="button button-icon icon ion-ios-search-strong" ng-click="showFilterBar()">
+    </button>
+  </ion-nav-buttons>
+
+  <ion-content>
+    <card-list list="cards"></card-list>
   </ion-content>
 </ion-view>

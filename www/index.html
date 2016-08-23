@@ -18,10 +18,20 @@
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
 
+    <!-- search/filter bar -->
+    <script src="lib/ionic-filter-bar/ionic.filter.bar.js"></script>
+    <script src="lib/ionic-filter-bar/ionic.filter.bar.config.js"></script>
+    <script src="lib/ionic-filter-bar/ionic.filter.bar.directive.js"></script>
+    <script src="lib/ionic-filter-bar/ionic.filter.bar.service.js"></script>
+
     <!-- mtg-price -->
     <script src="app/mtg-price.js"></script>
     <script src="app/mtg-price.routes.js"></script>
     <script src="app/mtg-price.service.js"></script>
+
+    <!-- tabs -->
+    <script src="app/tabs/tabs.controller.js"></script>
+    <script src="app/tabs/tabs.routes.js"></script>    
 
     <!-- card-list -->
     <script src="app/card-list/card-list.module.js"></script>
@@ -29,8 +39,8 @@
 
     <!-- search -->
     <script src="app/search/search.module.js"></script>
-    <script src="app/search/search.routes.js"></script>
     <script src="app/search/search.controller.js"></script>
+    <script src="app/search/search.routes.js"></script>
   </head>
   <body ng-app="mtg-price">
     <ion-nav-view></ion-nav-view>
