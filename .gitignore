@@ -4,3 +4,7 @@
 node_modules/
 platforms/
 plugins/
+
+
+# Specific to application
+AllSets-x.json

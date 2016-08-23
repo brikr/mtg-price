@@ -6,14 +6,14 @@
   MtgPriceService.$inject = ['$http'];
 
   function MtgPriceService($http) {
-    var url = 'https://api.deckbrew.com/mtg'
+    var url = 'http://localhost:8081'
 
     return {
       getAutoComplete: getAutoComplete
     }
 
     function getAutoComplete(str) {
-      return $http.get(url + '/cards/typeahead?q=' + str);
+      return $http.get(url + '/query/' + str);
     }
   }
 })();
