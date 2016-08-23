@@ -5,7 +5,8 @@
 
       'jett.ionic.filter.bar',
 
-      'mtg-price.search'
+      'mtg-price.search',
+      'mtg-price.card-detail'
     ])
     .run(run);
 

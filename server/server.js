@@ -11,7 +11,7 @@ try {
   fs.accessSync('AllSets-x.json')
 }
 catch (err) {
-  console.log('missing card data');
+  log('missing card data');
   // TODO: synchronously download card data before starting server
   process.exit();
 }
@@ -20,6 +20,7 @@ var data = JSON.parse(fs.readFileSync('AllSets-x.json'));
 app.get('/query/:str', function(req, res) {
   var date = new Date();
   var start = date.getTime();
+
   var matches = [];
   _.forOwn(data, function(value, key) {
     var setMatches = _.filter(value.cards, function(c) {
@@ -34,12 +35,37 @@ app.get('/query/:str', function(req, res) {
     if (matches.length > 100) return false;
   });
 
-  console.log('searched for ' + req.params.str + ', ' + 
+  log('searched for ' + req.params.str + ', ' + 
               matches.length + ' results in ' + 
               (date.getTime() - start) + ' millseconds');
   res.send(matches);
 });
 
-app.listen(8081, function() {
-  console.log('ready');
+app.get('/card/:multiverseid', function(req, res) {
+  var date = new Date();
+  var start = date.getTime();
+
+  var card = undefined;
+  _.forOwn(data, function(value, key) {
+    card = _.find(value.cards, function(c) {
+      return c.multiverseid == req.params.multiverseid;
+    })  ;
+
+    if (card) {
+      card.set = key;
+      return false;
+    }
+  });
+
+  log('found ' + req.params.multiverseid + 
+      ' in ' + (date.getTime() - start) + ' milliseconds');
+  res.send(card);
 });
+
+app.listen(8081, function() {
+  log('ready');
+});
+
+function log(str) {
+  console.log('[server] ' + str)
+}

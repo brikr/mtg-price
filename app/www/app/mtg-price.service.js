@@ -9,11 +9,16 @@
     var url = 'http://localhost:8081'
 
     return {
-      getAutoComplete: getAutoComplete
+      getAutoComplete: getAutoComplete,
+      getCard: getCard
     }
 
     function getAutoComplete(str) {
       return $http.get(url + '/query/' + str);
+    }
+
+    function getCard(multiverseid) {
+      return $http.get(url + '/card/' + multiverseid);
     }
   }
 })();

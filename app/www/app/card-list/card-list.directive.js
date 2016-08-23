@@ -23,8 +23,8 @@
       $scope.cards = newVal;
     });
 
-    function click(multiverseID) {
-      $state.go('app.card-detail', { multiverseID: multiverseID });
+    function click(multiverseid, card) {
+      $state.go($state.current.name + '-card-detail', { multiverseid: multiverseid, card: card });
     }
   }
 })();
