@@ -7,6 +7,7 @@
 
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+    <link href="app/card-detail/card-detail.css" rel="stylesheet">
 
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
@@ -18,11 +19,12 @@
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
 
-    <!-- search/filter bar -->
-    <script src="lib/ionic-filter-bar/ionic.filter.bar.js"></script>
-    <script src="lib/ionic-filter-bar/ionic.filter.bar.config.js"></script>
-    <script src="lib/ionic-filter-bar/ionic.filter.bar.directive.js"></script>
-    <script src="lib/ionic-filter-bar/ionic.filter.bar.service.js"></script>
+    <!-- libraries -->
+    <script src="lib/ionic-filter-bar/dist/ionic.filter.bar.min.js"></script>
+    <script src="lib/lodash/dist/lodash.min.js"></script>
+
+    <!-- local storage -->
+    <script src="app/local-storage/local-storage.js"></script>
 
     <!-- mtg-price -->
     <script src="app/mtg-price.js"></script>
@@ -41,6 +43,12 @@
     <script src="app/search/search.module.js"></script>
     <script src="app/search/search.controller.js"></script>
     <script src="app/search/search.routes.js"></script>
+
+    <!-- favorites -->
+    <script src="app/favorites/favorites.module.js"></script>
+    <script src="app/favorites/favorites.controller.js"></script>
+    <script src="app/favorites/favorites.routes.js"></script>
+    <script src="app/favorites/favorites.service.js"></script>    
 
     <!-- card-detail -->
     <script src="app/card-detail/card-detail.module.js"></script>

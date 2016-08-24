@@ -1,6 +1,11 @@
 <ion-view>
   <ion-nav-title>{{card.name}} [{{card.set}}]</ion-nav-title>
 
+  <ion-nav-buttons side="right">
+    <button class="button button-clear button-icon icon ion-ios-heart" ng-click="favoriteToggle()" ng-class="{'button-assertive': isFavorite}">
+    </button>
+  </ion-nav-buttons>
+
   <ion-content>
     {{multiverseid}}
   </ion-content>
