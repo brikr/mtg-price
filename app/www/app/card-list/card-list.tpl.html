@@ -1,5 +1,6 @@
 <ion-list>
-  <ion-item ng-repeat="card in cards" ng-click="click(card.multiverseid, card)">
-    {{card.name}} [{{card.set}}]
+  <ion-item ng-repeat="card in cards" ng-click="click(card.multiverseid, card)"
+   class="list-item">
+    {{card.name}} <span class="italic">[{{card.set}}]</span>
   </ion-item>
 </ion-list>

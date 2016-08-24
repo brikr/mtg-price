@@ -8,11 +8,13 @@
   function FavoritesController($scope, MtgPriceService, FavoritesService) {
     $scope.cards = []
 
-    Promise.all(_.map(FavoritesService.getFavorites(), function(id) {
-      return MtgPriceService.getCard(id);
-    })).then(function(cards) {
-      $scope.cards = _.map(cards, function(c) {
-        return c.data;
+    $scope.$on('$ionicView.beforeEnter', function() {
+      Promise.all(_.map(FavoritesService.getFavorites(), function(id) {
+        return MtgPriceService.getCard(id);
+      })).then(function(cards) {
+        $scope.cards = _.map(cards, function(c) {
+          return c.data;
+        });
       });
     });
   }

@@ -1,1 +1,42 @@
-/* Empty. Add your own CSS if you like */
+.card-detail {
+  margin: 5px;
+}
+
+.card-detail img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 60vh;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.list-item {
+  font-size: 14pt;
+}
+
+.price-amount {
+  font-size: 24pt;
+  font-weight: bold;
+}
+
+.price-online {
+  color: #c3593c;
+}
+
+.price-paper {
+  color: #06d;
+  text-align: right;
+}
+
+.price-text {
+  font-size: 12pt;
+}
+
+.prices {
+  margin: 20px 50px;
+  display: flex;
+  justify-content: space-between;
+}

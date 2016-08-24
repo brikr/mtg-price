@@ -6,7 +6,17 @@
     </button>
   </ion-nav-buttons>
 
-  <ion-content>
-    {{multiverseid}}
+  <ion-content class="card-detail">
+    <img src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{card.multiverseid}}&type=card" />
+    <div class="prices">
+      <div class="price-online">
+        <p class="price-text">ONLINE</p>
+        <p class="price-amount">42.69</p>
+      </div>
+      <div class="price-paper">
+        <p class="price-text">PAPER</p>
+        <p class="price-amount">13.37</p>
+      </div>
+    </div>
   </ion-content>
 </ion-view>
