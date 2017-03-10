@@ -15,7 +15,7 @@ functions:
     handler: 'handler.card'
     events:
       - http:
-          path: 'cards/{set}/{name}'
+          path: 'cards/{name}'
           method: 'get'
 
 resources:

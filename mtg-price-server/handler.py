@@ -1,9 +1,15 @@
 import json
 
 def card(event, context):
+    search = event['pathParameters']['name']
+
+    response = table.scan(
+        FilterExpression=Key('name').begins_with(search)
+    )
+
     body = {
-        "message": "Go Serverless v1.0! Your function executed successfully!",
-        "input": event
+        'error': false,
+        'matches': response[u'Items']
     }
 
     response = {
