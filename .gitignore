@@ -1,10 +1,8 @@
 # Specifies intentionally untracked files to ignore when using Git
 # http://git-scm.com/docs/gitignore
 
+.serverless/
 node_modules/
 platforms/
 plugins/
 
-
-# Specific to application
-AllSets-x.json

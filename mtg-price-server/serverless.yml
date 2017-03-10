@@ -1,0 +1,39 @@
+service: 'mtg-price-server'
+
+provider:
+  name: 'aws'
+  runtime: 'python2.7'
+  region: 'us-west-2'
+  profile: 'brikr'
+  iamRoleStatements:
+    - Effect: 'Allow'
+      Action: 'dynamodb:*'
+      Resource: 'arn:aws:dynamodb:*:*:table/mtg_price_cards'
+
+functions:
+  card:
+    handler: 'handler.card'
+    events:
+      - http:
+          path: 'cards/{set}/{name}'
+          method: 'get'
+
+resources:
+  Resources:
+    cardsTable:
+      Type: 'AWS::DynamoDB::Table'
+      Properties:
+        TableName: 'mtg_price_cards'
+        AttributeDefinitions:
+          - AttributeName: 'name'
+            AttributeType: 'S'
+          - AttributeName: 'set'
+            AttributeType: 'S'
+        KeySchema:
+          - AttributeName: 'name'
+            KeyType: 'HASH'
+          - AttributeName: 'set'
+            KeyType: 'RANGE'
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
