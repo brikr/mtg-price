@@ -12,10 +12,10 @@ provider:
 
 functions:
   card:
-    handler: 'handler.card'
+    handler: 'handler.query'
     events:
       - http:
-          path: 'cards/{name}'
+          path: 'query/{name}'
           method: 'get'
 
 resources:
@@ -35,5 +35,5 @@ resources:
           - AttributeName: 'set'
             KeyType: 'RANGE'
         ProvisionedThroughput:
-          ReadCapacityUnits: 1
-          WriteCapacityUnits: 1
+          ReadCapacityUnits: 10
+          WriteCapacityUnits: 10

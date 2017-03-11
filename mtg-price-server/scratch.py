@@ -5,6 +5,8 @@
 import boto3
 import decimal
 import json
+import random
+import time
 from boto3.dynamodb.conditions import Key, Attr
 
 class DecimalEncoder(json.JSONEncoder):
@@ -16,31 +18,48 @@ class DecimalEncoder(json.JSONEncoder):
                 return int(o)
         return super(DecimalEncoder, self).default(o)
 
-search = 'tar'
+def now():
+    return decimal.Decimal(time.time())
 
-cards = json.load(open('cards.json'))
-matches = dict((k, v) for k, v in cards.items() if k.lower().startswith(search.lower()))
+def update(card):
+    card['time'] = now()
+    card['paper'] = decimal.Decimal(random.randrange(1, 100))
+    card['online'] = decimal.Decimal(random.randrange(1, 100))
+    return card
 
-print(matches)
+if __name__ == '__main__':
+    search = 'tar'
 
-table = boto3.resource('dynamodb').Table('mtg_price_cards')
+    cards = json.load(open('cards.json'))
+    matches = dict((k, v) for k, v in cards.items() if k.lower().startswith(search.lower()))
 
-results = list()
+    print(matches)
 
-for name, sets in matches.iteritems():
-    response = table.query(
-        KeyConditionExpression=Key('name').eq(name)
-    )
-    results.extend(response[u'Items'])
+    table = boto3.resource('dynamodb').Table('mtg_price_cards')
 
-print(json.dumps(results, cls=DecimalEncoder))
+    results = list()
+    ts = now()
 
-# response = table.put_item(
-#     Item={
-#         'name': 'Tarmogoyf',
-#         'set': 'MM3',
-#         'paper': decimal.Decimal('96.99'),
-#         'online': decimal.Decimal('70.40'),
-#         'time': 1489170621
-#     }
-# )
+    for name, sets in matches.iteritems():
+        response = table.query(
+            KeyConditionExpression=Key('name').eq(name)
+        )
+
+        # cache hits
+        for i in response[u'Items']:
+            if ts - i['time'] < 120: # less than two minutes old
+                sets.remove(i['set'])
+                results.append(i)
+            else: # stale
+                sets.remove(i['set'])
+                fresh = update(i)
+                table.put_item(Item=fresh) # update table
+                results.append(fresh)
+
+        # not in cache
+        for s in sets:
+            fresh = update({ 'name': name, 'set': s })
+            table.put_item(Item=fresh)
+            results.append(fresh)
+
+    print(json.dumps(results, cls=DecimalEncoder))
